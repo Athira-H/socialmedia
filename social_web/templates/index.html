@@ -1,0 +1,142 @@
+{%extends 'base.html'%}
+
+{%block body_block%}
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            {%for m in messages%}
+         {%if m.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+         <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{m}}!</strong> You should check in on some of those fields below.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+         {%endif%}
+        
+         {%if m.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+         <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{m}}!</strong> You should check in on some of those fields below.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+         {%endif%}
+        
+
+
+        {%endfor%}
+        </div>
+
+    </div>
+     <div class="col-4"></div>
+    </div>
+</div>
+        <center class="mt-3"> <h1>welcome</h1></center>
+
+        <style>
+          body {
+              
+              background: url('../../images/new1.png')no-repeat;
+              background-size: cover;
+      
+              /* background-color:  rgb(182, 133, 236);
+              background-image: linear-gradient(45deg,  rgb(184, 163, 205)); */
+      
+          }
+      
+          .container-1 {
+              transform: translate(0, 50%);
+            }
+      </style>
+
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <form action="" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            
+            {{form.as_p}}
+            <input type="submit" value="add">
+
+        </form>
+    </div>
+    <div class="col-4"></div>
+</div>
+
+    
+
+<!-- posts list -->
+   <div class="row gx-4 gx-lg-5 justify-content-center">
+    {%for p in posts%}
+
+    <div class="col-md-10 col-lg-8 col-xl-7"> 
+        <!-- Post preview -->
+         <div class="post-preview"> 
+             <a href="post.html">
+                 <h2 class="post-title">{{p.title}}</h2>
+                 {%if p.image%}
+                 <div>
+                     <img src="{{p.image.url}}" alt="" class="h-50,w-50">
+                 </div>
+                 {%endif%}
+             </a>
+             <p class="post-meta">
+              
+                {{p.likecount}} <i class="bi bi-chat-left-heart-fill p-2 ">likes</i>,
+                 Posted by
+                 <a href="#!">{{p.user}}</a>
+                 on {{p.created_date}}
+                 <a href="{%url 'add-like' p.id %}" class="btn btn-warning btn-sm rounded-pill">likedby</a>
+              
+               
+             </p>
+        
+         </div>
+         <div>
+            <form action="{%url 'add-comment' p.id %}" method="post">
+            {%csrf_token%}
+            <input type="text" placeholder="enter your comment" name="comment" class="form-control rounded-pill">
+            <button type="submit" class="btn btn-outline-info mt-2 btn-sm rounded">add</button>
+           </form>
+         </div>
+
+         <!-- accrdian start -->
+         <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item mt-2 rounded">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                  <strong>comments</strong><i class="bi bi-chat"></i>
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+                    {%for com in p.post_comments%}
+                   <div class="border rounded-pill p-3 border-success mt-2">
+                    <strong>{{com}}</strong>
+                    <span class="post-meta">
+                    Posted by
+                    <a href="#!">{{com.user}}</a>
+                    on {{com.created_date}}, 
+                     {{com.likecount}} <a href="{%url 'add-likes' com.id %}" class="btn btn-warning btn-sm rounded-pill">likes</a>
+                
+                    </span>
+                    </div>
+                    {%endfor%}
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    </div> 
+
+                </div>
+              </div>
+            </div>
+            
+        </div>
+          
+
+         <!-- <h5 class="post-title">Comments</h5> -->
+         
+         <!-- Divider-->
+        
+
+    {%endfor%}
+</div>
+<!-- end post -->
+ {%endblock%}  

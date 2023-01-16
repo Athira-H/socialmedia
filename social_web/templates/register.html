@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+{%load static%}
+
+
+
+
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{%static 'css/loginstyle.css'%}">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+          <div class="col-4"></div>
+          <div class="col-4">
+              {%for m in messages%}
+           {%if m.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+           <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>{{m}}!</strong> You should check in on some of those fields below.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+           {%endif%}
+          
+           {%if m.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+           <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>{{m}}!</strong> You should check in on some of those fields below.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+           {%endif%}
+          
+  
+  
+          {%endfor%}
+          </div>
+  
+      </div>
+       <div class="col-4"></div>
+      </div>
+  </div>
+  
+   <style>
+    body {
+        height: 500vh;
+        background: url('../../images/p2.webp')no-repeat;
+        background-size: cover;
+
+        /* background-color:  rgb(182, 133, 236);
+        background-image: linear-gradient(45deg,  rgb(184, 163, 205)); */
+
+    }
+
+    .container-1 {
+        transform: translate(0, 50%);
+      }
+</style>
+
+    <div class="center">
+      
+      <h1>Register</h1>
+
+      <div ml-5>
+        {%for f in form%}
+          {{f.errors}}
+        {%endfor%}
+      </div>
+
+      <form method="post" >
+        {%csrf_token%}
+        <div class="txt_field">
+            <input type="text" name="first_name" id="id_first_name" required>
+            <span></span>
+            <label>FirstName</label>
+          </div>
+          <div class="txt_field">
+            <input type="text" name="last_name" id="id_last_name" required>
+            <span></span>
+            <label>lastname</label>
+          </div>
+          <div class="txt_field">
+            <input type="email" name="email" id="id_email" required>
+            <span></span>
+            <label>email</label>
+          </div>
+
+        
+        <div class="txt_field">
+          <input type="text" name="username" id="id_username" required>
+          <span></span>
+          <label>Username</label>
+        </div>
+        <div class="txt_field">
+          <input type="password" name="password1" id="id_password1" required>
+          <span></span>
+          <label>Password</label>
+        </div>
+        <div class="txt_field">
+            <input type="password" name="password2" id="id_password2" required>
+            <span></span>
+            <label>ConfirmPassword</label>
+          </div>
+       
+        <input type="submit" value="Register">
+        <div class="signup_link">
+          already have an account? <a href="{%url 'signin'%}">Signin</a>
+        </div>
+      </form>
+    </div>
+
+  </body>
+</html>

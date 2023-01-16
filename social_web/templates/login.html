@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+{%load static%}
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Animated Login Form | CodingNepal</title>
+  <link rel="stylesheet" href="{%static 'css/login.css'%}">
+</head>
+
+
+<body>
+  
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4">
+        {%for m in messages%}
+        {%if m.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>{{m}}!</strong> You should check in on some of those fields below.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {%endif%}
+
+        {%if m.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>{{m}}!</strong> You should check in on some of those fields below.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {%endif%}
+
+
+
+        {%endfor%}
+      </div>
+
+    </div>
+    <div class="col-4"></div>
+  </div>
+  </div>
+  <style>
+    body {
+        height: 500vh;
+        background: url('../../images/p2.webp')no-repeat;
+        background-size: cover;
+
+        /* background-color:  rgb(182, 133, 236);
+        background-image: linear-gradient(45deg,  rgb(184, 163, 205)); */
+
+    }
+
+    .container-1 {
+        transform: translate(0, 50%);
+      }
+  </style>
+
+  <!--  <div class="center">
+      <h1>Login</h1>
+      <form method="post">
+        {%csrf_token%}
+        <div class="txt_field">
+          <input type="text" name="username" id="id_username" required>
+          <span></span>
+          <label>Username</label>
+        </div>
+        <div class="txt_field">
+          <input type="password" name="password" id="id_password" required>
+          <span></span>
+          <label>Password</label>
+        </div>
+        <div class="pass">Forgot Password?</div>
+        <input type="submit" value="Login">
+        <div class="signup_link">
+          Not a member? <a href="{%url 'signup'%}">Signup</a>
+        </div>
+      </form>
+    </div>  -->
+    
+
+  <section class="main-section">
+    <div class="container">
+      <div class="user signinbox">
+        <!-- <div class="imagebox"> <img src="https://imgur.com/5y6Y6Gx.jpg"> </div> -->
+        <div class="imagebox"> <img src="/social_web/static/assets/img/p6.webp"> </div>
+        <div class="formbox">
+          <form method="post">
+            <div>
+            <h2 style="font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #555">Signin</h2>
+            {%csrf_token%}
+            <input type="text" name="username" placeholder="username" style="position:relative;width:100%;height:50px !important;padding:0px 10px;background-color:#f5f5f5;color:#333;border:none;outline:none;margin:10px 0;box-shadow:none;letter-spacing:1px;font-weight:400;font-size:14px">
+            <input type="password" name="password" placeholder="Password" style="position:relative;width:100%;height:50px !important;padding:0px 10px;background-color:#f5f5f5;color:#333;border:none;outline:none;margin:10px 0;box-shadow:none;letter-spacing:1px;font-weight:400;font-size:14px"> 
+            <input type="submit" value="Login" style="max-width:100px;background-color:#677eff;color:#fff;cursor:pointer">
+         
+            <p class="signup-text">Don't have an account? <a href="{%url 'signup'%}" onClick="toggleform();">Signup</a>
+            </p>
+          </div>
+        </div>
+        </div>
+      </div>
+      <!-- <div class="user signupbox">
+        <div class="formbox">
+          <div class="form">
+            <h2>Signup</h2> <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <input type="submit" value="Signup"> -->
+            <!-- <p class="signup-text">Already have an account?
+              <button class="btn-signin bg-light text-center" type="submit" value="login">Login</button>
+            </p> -->
+          <!-- </div> -->
+        </form>
+        <!-- </div> -->
+        <!-- <div class="imagebox"> <img src="https://i.imgur.com/kPlWgwj.jpg"> </div> -->
+      <!-- </div> -->
+    </div>
+  </section>
+
+</body>
+
+</html>
